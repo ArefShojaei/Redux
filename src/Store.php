@@ -42,6 +42,14 @@ class Store implements StoreContract {
      */
     private array $middlewares;
 
+    /**
+     * Subscribers
+     * @prop
+     * @private
+     * @type array
+     */
+    private array $subscribers;
+
 
     /**
      * Constructor
@@ -53,6 +61,7 @@ class Store implements StoreContract {
         $this->state = $initState;
         $this->reudcer = $reudcer;
         $this->middlewares = $middlewares;
+        $this->subscribers = [];
     }
 
 
