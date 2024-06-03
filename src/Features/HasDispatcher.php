@@ -19,9 +19,15 @@ trait HasDispatcher {
      * @return void
      */
     public function dispatch(array $action): void {
-        # Get reducer
+        # Get Reducer
         $reducer = $this->reducer;
 
+        # Run the Reducer
         $this->state = $reducer($this->state, $action);
+
+        # Run all Subscribers
+        foreach ($this->subscribers as $subscriber) {
+            $subscriber($this);
+        }
     }
 }
