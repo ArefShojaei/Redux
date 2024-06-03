@@ -23,7 +23,18 @@ trait HasSubscriber {
         $this->subscribers[] = $subscriber;
 
 
-        # UnSubscribe subscribers
+        # UnSubscribe Subscribers
+        return $this->unSubscribe($subscriber);
+    }
+
+    /**
+     * UnSubscribe all Subscribers
+     * @method unSubscribe
+     * @private
+     * @param callable $listener
+     * @return callable
+     */
+    private function unSubscribe(callable $subscriber): callable {
         return function() use ($subscriber) {
             # Get Listener index
             $subscriberIndex = array_search($subscriber, $this->subscribers);
