@@ -19,6 +19,14 @@ use Redux\Contracts\Interfaces\Store as StoreContract;
  */
 class Store implements StoreContract {
     /**
+     * State
+     * @prop
+     * @private
+     * @type mixed
+     */
+    private mixed $state;
+
+    /**
      * Reducer
      * @prop
      * @private
@@ -40,8 +48,9 @@ class Store implements StoreContract {
      * @param callable $reducer
      * @param array $middlewares
      */
-    public function __construct(callable $reudcer, array $middlewares)
+    public function __construct(callable $reudcer, mixed $initState, array $middlewares)
     {
+        $this->state = $initState;
         $this->reudcer = $reudcer;
         $this->middlewares = $middlewares;
     }
