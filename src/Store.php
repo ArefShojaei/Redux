@@ -54,4 +54,15 @@ class Store implements StoreContract {
         $this->reudcer = $reudcer;
         $this->middlewares = $middlewares;
     }
+
+
+    /**
+     * Get state
+     * @method getState
+     * @public
+     * @return mixed
+     */
+    public function getState(): mixed {
+        return $this->state;
+    }
 }
