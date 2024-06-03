@@ -5,12 +5,18 @@
  */
 namespace Redux\Contracts\Interfaces;
 
+/**
+ * @package
+ */
+use Redux\Contracts\Interfaces\Dispatcher;
+
+
 
 /**
  * Store Interface
  * @interface
  */
-interface Store {
+interface Store extends Dispatcher {
     /**
      * Get state
      * @method getState
