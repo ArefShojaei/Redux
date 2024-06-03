@@ -11,6 +11,7 @@ namespace Redux;
  */
 use Redux\Contracts\Interfaces\Store as StoreContract;
 use Redux\Features\HasDispatcher;
+use Redux\Features\HasSubscriber;
 
 
 
@@ -22,7 +23,7 @@ class Store implements StoreContract {
     /**
      * Traits - Store Features
      */
-    use HasDispatcher;
+    use HasDispatcher, HasSubscriber;
 
 
     /**
