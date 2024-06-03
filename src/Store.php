@@ -16,7 +16,7 @@ use Redux\Features\HasSubscriber;
 
 
 /**
- * Store state
+ * Store creator
  * @class
  */
 class Store implements StoreContract {
