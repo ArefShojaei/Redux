@@ -14,6 +14,7 @@ use Redux\Contracts\Interfaces\Store as StoreContract;
 use Redux\Contracts\Interfaces\Action as ActionContract;
 use Redux\Store;
 use Redux\Action;
+use Redux\Reducer;
 
 
 
@@ -45,5 +46,17 @@ class Redux implements ReduxContract {
      */
     public static function createAction(string $type): ActionContract {
         return new Action($type);
+    }
+ 
+    /**
+     * Create Reducer
+     * @method createReducer
+     * @public
+     * @static
+     * @param array $reducers
+     * @return callable
+     */
+    public static function createReducer(array $reducers): callable {
+        return (new Reducer($reducers))->getReducer();
     }
 }
