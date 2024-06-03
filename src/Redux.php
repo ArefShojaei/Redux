@@ -23,6 +23,8 @@ class Redux implements ReduxContract {
     /**
      * Create Store
      * @method createStore
+     * @public
+     * @static
      * @param callable $reducer
      * @param array $middlewares
      * @return StoreContract

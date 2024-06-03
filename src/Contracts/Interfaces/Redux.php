@@ -21,6 +21,8 @@ interface Redux {
     /**
      * Create Store
      * @method createStore
+     * @public
+     * @static
      * @param callable $reducer
      * @param array $middlewares
      * @param mixed $initState
