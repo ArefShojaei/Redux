@@ -12,18 +12,18 @@ namespace Redux\Features;
  */
 trait HasSubscriber {
     /**
-     * Subscribe & UnSubscribe Store by Listener
+     * Subscribe & UnSubscribe Store by Subscriber
      * @method subscribe
      * @public
-     * @param callable $listener
+     * @param callable $subscriber
      * @return void
      */
     public function subscribe(callable $subscriber): callable {
-        # Add Listener
+        # Add Subscriber
         $this->subscribers[] = $subscriber;
 
 
-        # UnSubscribe Subscribers
+        # UnSubscribe all Subscribers
         return $this->unSubscribe($subscriber);
     }
 
@@ -31,12 +31,12 @@ trait HasSubscriber {
      * UnSubscribe all Subscribers
      * @method unSubscribe
      * @private
-     * @param callable $listener
+     * @param callable $subscriber
      * @return callable
      */
     private function unSubscribe(callable $subscriber): callable {
         return function() use ($subscriber) {
-            # Get Listener index
+            # Get Subscriber index
             $subscriberIndex = array_search($subscriber, $this->subscribers);
 
             # Self Subscriber index
