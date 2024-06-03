@@ -53,15 +53,15 @@ class Reducer implements ReducerContract {
      * @return callable
      */
     public function getReducer(): callable {
-        return function($state, $aciton) {
+        return function($state, $action) {
             # Action Type
-            $type = $aciton["type"];
+            $type = $action["type"];
 
             # Check to exist Reducer
             $reducer = $this->reducers[$type] ?? false;
             
             # Get Reducer
-            return !$reducer ? $this->state : $reducer($state, $aciton);
+            return !$reducer ? $this->state : $reducer($state, $action);
         };
     }
 }
