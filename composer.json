@@ -1,0 +1,25 @@
+{
+    "name": "arefshojaei/redux",
+    "description": "PHP library for state manager",
+    "keywords": [
+        "Library",
+        "Redux"
+    ],
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Arefshojaei\\Redux\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "ArefShojaei",
+            "email": "arefshojaei82dev@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php" : "^8.0"
+    }
+}
