@@ -18,5 +18,5 @@ interface Action {
      * @param mixed $data payload data
      * @return array
      */
-    public function __invoke(mixed $data): array;
+    public function __invoke(mixed $data = null): array;
 }

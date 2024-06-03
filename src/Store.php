@@ -64,12 +64,15 @@ class Store implements StoreContract {
      * @param callable $reducer
      * @param array $middlewares
      */
-    public function __construct(callable $reudcer, mixed $initState, array $middlewares)
+    public function __construct(callable $reudcer, array $middlewares)
     {
-        $this->state = $initState;
+        $this->state = null;
         $this->reducer = $reudcer;
         $this->middlewares = $middlewares;
         $this->subscribers = [];
+
+        # Init State by null Action type! 
+        $this->dispatch(["type" => ""]);
     }
 
 

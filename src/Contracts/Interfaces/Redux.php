@@ -28,5 +28,5 @@ interface Redux {
      * @param mixed $initState
      * @return Sotre
      */
-    public static function createStore(callable $reducer, mixed $initState, array $middlewares = []): Store;
+    public static function createStore(callable $reducer, array $middlewares = []): Store;
 }

@@ -21,7 +21,7 @@ trait HasDispatcher {
     public function dispatch(array $action): void {
         # Get Reducer
         $reducer = $this->reducer;
-
+        
         # Run the Reducer
         $this->state = $reducer($this->state, $action);
 

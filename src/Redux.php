@@ -32,8 +32,8 @@ class Redux implements ReduxContract {
      * @param array $middlewares
      * @return StoreContract
      */
-    public static function createStore(callable $reducer, mixed $initState, array $middlewares = []): StoreContract {
-        return new Store($reducer, $initState, $middlewares);
+    public static function createStore(callable $reducer, array $middlewares = []): StoreContract {
+        return new Store($reducer, $middlewares);
     }
 
     /**
@@ -56,7 +56,7 @@ class Redux implements ReduxContract {
      * @param array $reducers
      * @return callable
      */
-    public static function createReducer(array $reducers): callable {
-        return (new Reducer($reducers))->getReducer();
+    public static function createReducer(mixed $initState, array $reducers): callable {
+        return (new Reducer($initState, $reducers))->getReducer();
     }
 }

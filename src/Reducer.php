@@ -19,6 +19,14 @@ use Redux\Contracts\Interfaces\Reducer as ReducerContract;
  */
 class Reducer implements ReducerContract {
     /**
+     * State
+     * @prop
+     * @private
+     * @type mixed
+     */
+    private mixed $state;
+
+    /**
      * List of Reducers
      * @prop
      * @private
@@ -27,11 +35,14 @@ class Reducer implements ReducerContract {
     private array $reducers;
 
     
+
     /**
      * Constructor
+     * @param mixed $initState
      * @param array $reducers
      */
-    public function __construct(array $reducers) {
+    public function __construct(mixed $initState, array $reducers) {
+        $this->state = $initState;
         $this->reducers = $reducers;
     }
 
@@ -50,7 +61,7 @@ class Reducer implements ReducerContract {
             $reducer = $this->reducers[$type] ?? false;
             
             # Get Reducer
-            return !$reducer ? $state : $reducer($state, $aciton);
+            return !$reducer ? $this->state : $reducer($state, $aciton);
         };
     }
 }
