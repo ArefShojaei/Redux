@@ -14,8 +14,8 @@ trait HasDispatcher {
     /**
      * Dispatch reducer by Action
      * @method dispatch
-     * @param array $action
      * @public
+     * @param array $action
      * @return void
      */
     public function dispatch(array $action): void {
