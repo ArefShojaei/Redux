@@ -18,21 +18,21 @@ trait HasSubscriber {
      * @param callable $listener
      * @return void
      */
-    public function subscribe(callable $listener): callable {
+    public function subscribe(callable $subscriber): callable {
         # Add Listener
-        $this->listeners[] = $listener;
+        $this->subscribers[] = $subscriber;
 
 
-        # UnSubscribe Listeners
-        return function() use ($listener) {
+        # UnSubscribe subscribers
+        return function() use ($subscriber) {
             # Get Listener index
-            $listenerIndex = array_search($listener, $this->listeners);
+            $subscriberIndex = array_search($subscriber, $this->subscribers);
 
-            # Self Listener index
-            $selfListenerIndex = 1;
+            # Self Subscriber index
+            $selfSubscriberIndex = 1;
 
-            # Pop the Listener from the Listeners
-            array_splice($this->listeners, $listenerIndex, $selfListenerIndex);
+            # Pop the Subscriber from the Subscribers
+            array_splice($this->subscribers, $subscriberIndex, $selfSubscriberIndex);
         };
     }
 }

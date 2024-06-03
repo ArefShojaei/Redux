@@ -12,11 +12,11 @@ namespace Redux\Contracts\Interfaces;
  */
 interface Subscriber {
     /**
-     * Subscribe & UnSubscribe Store by Listener
+     * Subscribe & UnSubscribe Store by subscriber
      * @method subscribe
      * @public
-     * @param callable $listener
+     * @param callable $subscriber
      * @return void
      */
-    public function subscribe(callable $listener): void;
+    public function subscribe(callable $subscriber): callable;
 }

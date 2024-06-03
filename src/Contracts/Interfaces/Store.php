@@ -16,7 +16,7 @@ use Redux\Contracts\Interfaces\Dispatcher;
  * Store Interface
  * @interface
  */
-interface Store extends Dispatcher {
+interface Store extends Dispatcher, Subscriber {
     /**
      * Get state
      * @method getState
