@@ -20,7 +20,7 @@ use Redux\Contracts\Interfaces\{
  * Middleware as Guard
  * @class
  */
-class Middleware implements MiddlewareContract {
+final class Middleware implements MiddlewareContract {
     /**
      * List of Middlewares
      * @prop

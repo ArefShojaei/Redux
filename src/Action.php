@@ -15,7 +15,7 @@ use Redux\Contracts\Interfaces\Action as ActionContract;
  * Action creator
  * @class
  */
-class Action implements ActionContract {
+final class Action implements ActionContract {
     /**
      * Action type
      * @prop

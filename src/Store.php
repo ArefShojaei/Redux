@@ -21,7 +21,7 @@ use Redux\Features\Store\{
  * Store creator
  * @class
  */
-class Store implements StoreContract {
+final class Store implements StoreContract {
     /**
      * Traits - Store Features
      */

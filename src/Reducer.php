@@ -17,7 +17,7 @@ use Redux\Contracts\Interfaces\Reducer as ReducerContract;
  * Reducer creator
  * @class
  */
-class Reducer implements ReducerContract {
+final class Reducer implements ReducerContract {
     /**
      * State
      * @prop
