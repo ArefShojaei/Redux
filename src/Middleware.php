@@ -9,8 +9,10 @@ namespace Redux;
 /**
  * @package
  */
-use Redux\Contracts\Interfaces\Store;
-use Redux\Contracts\Interfaces\Middleware as MiddlewareContract;
+use Redux\Contracts\Interfaces\{
+    Store,
+    Middleware as MiddlewareContract
+};
 
 
 

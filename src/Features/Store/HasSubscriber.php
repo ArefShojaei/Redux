@@ -3,7 +3,7 @@
 /**
  * @namespace
  */
-namespace Redux\Features;
+namespace Redux\Features\Store;
 
 
 /**

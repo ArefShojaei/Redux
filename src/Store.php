@@ -10,7 +10,7 @@ namespace Redux;
  * @package
  */
 use Redux\Contracts\Interfaces\Store as StoreContract;
-use Redux\Features\{
+use Redux\Features\Store\{
     HasDispatcher,
     HasSubscriber
 };
@@ -42,7 +42,7 @@ class Store implements StoreContract {
      * @private
      * @type callable
      */
-    private mixed $reducer;
+    private $reducer;
     
     /**
      * Middlewares
@@ -66,8 +66,7 @@ class Store implements StoreContract {
      * @param callable $reducer
      * @param array $middlewares
      */
-    public function __construct(callable $reudcer, array $middlewares)
-    {
+    public function __construct(callable $reudcer, array $middlewares) {
         $this->state = null;
         $this->reducer = $reudcer;
         $this->middlewares = $middlewares;
