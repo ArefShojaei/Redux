@@ -14,7 +14,7 @@ use Redux\Middleware;
 
 
 /**
- * Has Dispatcher feature for Store
+ * Has Dispatcher feature
  * @tarit
  */
 trait HasDispatcher {

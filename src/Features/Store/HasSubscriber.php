@@ -7,7 +7,7 @@ namespace Redux\Features;
 
 
 /**
- * Has Subscriber feature for Store
+ * Has Subscriber feature
  * @tarit
  */
 trait HasSubscriber {
