@@ -60,6 +60,15 @@ class Store implements StoreContract {
      */
     private array $subscribers;
 
+    /**
+     * Init Action
+     * @prop
+     * @const
+     * @private
+     * @type string
+     */
+    private const INIT = "@INIT";
+
 
     /**
      * Constructor
@@ -72,8 +81,8 @@ class Store implements StoreContract {
         $this->middlewares = $middlewares;
         $this->subscribers = [];
 
-        # Init State by null Action type! 
-        $this->dispatch(["type" => ""]);
+        # Init State
+        $this->dispatch(["type" => self::INIT]);
     }
 
 
