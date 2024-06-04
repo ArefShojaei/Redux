@@ -10,8 +10,10 @@ namespace Redux;
  * @package
  */
 use Redux\Contracts\Interfaces\Store as StoreContract;
-use Redux\Features\HasDispatcher;
-use Redux\Features\HasSubscriber;
+use Redux\Features\{
+    HasDispatcher,
+    HasSubscriber
+};
 
 
 
