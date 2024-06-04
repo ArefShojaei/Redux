@@ -76,4 +76,28 @@ class Redux implements ReduxContract {
     public static function combineReducers(array $reducers): callable {
         return Reducer::combineReducers($reducers);
     }
+
+    /**
+     * Apply Middlewares
+     * @method applyMiddlewares
+     * @public
+     * @static
+     * @param array $middlewares
+     * @return array
+     */
+    public static function applyMiddlewares(...$middlewares): array {
+        return $middlewares;
+    }
+
+    /**
+     * Create Middleware
+     * @method applyMiddlewares
+     * @public
+     * @static
+     * @param callable $action
+     * @return callable
+     */
+    public static function createMiddleware(callable $action): callable {
+        return $action;
+    }
 }
