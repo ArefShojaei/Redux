@@ -9,12 +9,16 @@ namespace Redux;
 /**
  * @package
  */
-use Redux\Contracts\Interfaces\Redux as ReduxContract;
-use Redux\Contracts\Interfaces\Store as StoreContract;
-use Redux\Contracts\Interfaces\Action as ActionContract;
-use Redux\Store;
-use Redux\Action;
-use Redux\Reducer;
+use Redux\Contracts\Interfaces\{
+    Redux as ReduxContract,
+    Store as StoreContract,
+    Action as ActionContract
+};
+use Redux\{
+    Store,
+    Action,
+    Reducer
+};
 
 
 
@@ -47,16 +51,29 @@ class Redux implements ReduxContract {
     public static function createAction(string $type): ActionContract {
         return new Action($type);
     }
- 
+
     /**
      * Create Reducer
      * @method createReducer
      * @public
      * @static
+     * @param mixed $initState
      * @param array $reducers
      * @return callable
      */
     public static function createReducer(mixed $initState, array $reducers): callable {
         return (new Reducer($initState, $reducers))->getReducer();
+    }
+
+    /**
+     * Combine Reducers
+     * @method combineReducers
+     * @public
+     * @static
+     * @param array $reducers
+     * @return callable
+     */
+    public static function combineReducers(array $reducers): callable {
+        return Reducer::combineReducers($reducers);
     }
 }

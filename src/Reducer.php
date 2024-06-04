@@ -60,8 +60,35 @@ class Reducer implements ReducerContract {
             # Check to exist Reducer
             $reducer = $this->reducers[$type] ?? false;
             
-            # Get Reducer
-            return !$reducer ? $this->state : $reducer($state, $action);
+            # Get State
+            if(!$reducer) return $this->state;
+            
+            # Update State
+            $this->state = $reducer($this->state, $action);
+
+            return $this->state;
+        };
+    }
+    
+    /**
+     * Combine Reducers
+     * @method combineReducers
+     * @public
+     * @static
+     * @return callable
+     */
+    public static function combineReducers(array $reducers): callable {
+        return function($state, $action) use ($reducers) {
+            # New State
+            $result = [];
+
+            # Add State
+            foreach ($reducers as $key => $reducer) {
+                $result[$key] = $reducer($state, $action);
+            }
+
+            # Get the State
+            return $result;
         };
     }
 }

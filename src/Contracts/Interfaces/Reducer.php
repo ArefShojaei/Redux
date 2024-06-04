@@ -18,4 +18,14 @@ interface Reducer {
      * @return callable
      */
     public function getReducer(): callable;
+
+    /**
+     * Combine Reducers
+     * @method combineReudcers
+     * @public
+     * @static
+     * @param array $reducers
+     * @return callable
+     */
+    public static function combineReducers(array $reducers): callable;
 }
