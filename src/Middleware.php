@@ -83,7 +83,7 @@ class Middleware implements MiddlewareContract {
      * @public
      * @return void
      */
-    public function isPaused(): void {
+    private function isPaused(): void {
         if($this->count < count($this->middlewares)) exit;
     }
 

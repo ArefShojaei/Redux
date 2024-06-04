@@ -27,12 +27,4 @@ interface Middleware {
      * @return void
      */
     public function apply(Store $store, array $action): void;
-
-    /**
-     * Check to stop proccess before dispatching Action
-     * @method isPaused
-     * @public
-     * @return void
-     */
-    public function isPaused(): void;
 }
