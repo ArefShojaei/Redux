@@ -47,12 +47,16 @@ git clone https://github.com/ArefShojaei/Redux.git
 Redux::createStore($reducer, $middlewares);
 ```
 
+<br>
+
 > **Action** : An Event to do something
 
 ```php
 # Usage
 Redux::createAction("ACTION");
 ```
+
+<br>
 
 > **Reducer** : A Function to update state by Action
 
@@ -61,18 +65,25 @@ Redux::createAction("ACTION");
 Redux::createReducer($initState, $reducers);
 ```
 
+<br>
+
 > **Middleware** : A Function to call before Reducer for doing something
 
 ```php
 # Usage
 Redux::createMiddleware($callback);
 ```
+
+<br>
+
 > **Apply Middlewares** : A Function to get all Middleawres and apply in Store
 
 ```php
 # Usage
 Redux::applyMiddlewares(...$middlewares);
 ```
+
+<br>
 
 > **Combine Reducers** : Combine all reducers to get an Array with key & value
 
@@ -81,6 +92,7 @@ Redux::applyMiddlewares(...$middlewares);
 Redux::combineReducers($reducers);
 ```
 
+<br>
 
 # An Example of Counter App
 > Create Action to fire an Event 
@@ -96,6 +108,8 @@ $decrementAction = Redux::createAction("DECREMENT");
 $resetAction = Redux::createAction("RESET");
 ```
 
+<br>
+
 > Create Reducer to update State 
 * Increment count
 * Decrement count
@@ -104,7 +118,7 @@ $resetAction = Redux::createAction("RESET");
 ```php
 $initState = 0;
 
-$reducer = Redux::createReducer($initState, [
+$counterReducer = Redux::createReducer($initState, [
     $incrementAction()["type"] => fn($state, $action) => $state + 1,
     $decrementAction()["type"] => fn($state, $action) => $state - 1,
     $resetAction()["type"] => fn($state, $action) => $state - $state,
@@ -138,11 +152,15 @@ $incrementAction(["status" => "OK"])
 ]
 ```
 
+<br>
+
 > Create Store by Reducer 
 
 ```php
 $store = Redux::createStore($counterReducer);
 ```
+
+<br>
 
 > Use the Store in project 
 
@@ -159,6 +177,8 @@ $store->dispatch($incrementAction()); # 2
 # Get new State from the Store
 echo $store->getState(); # 2
 ```
+
+<br>
 
 > Subscribe the Store as Logger for changing State value
 
@@ -188,6 +208,8 @@ $store->dispatch($incrementAction()); # 3
 echo $store->getState(); # 3
 ```
 
+<br>
+
 > Create Middleware to log the Store & Action 
 
 ```php
@@ -199,14 +221,14 @@ $logger = Redux::createMiddleware(function($store, $action, $next) {
 
     
     # Call next Middleware or Reducer
-    $next($aciton);
+    $next($action);
 });
 
 
 
 
-# Get State from the Store
-$middlewares = Redux::applyMiddleawre();
+# Apply Middlewares
+$middlewares = Redux::applyMiddleawres($logger);
 
 
 # Pass Middlewares as Argument to the Store that has defined yet
@@ -219,3 +241,88 @@ $store = Redux::createStore($counterReducer, $middlewares);
 <br>
 
 > Subscriber can be **like Logger** to get **changing State value** from Store!
+
+<br>
+<br>
+
+# View of the Example
+```php
+<?php
+
+# Put autoload file path
+require_once "";
+
+
+use Redux\Redux;
+
+
+# Action
+$incrementAction = Redux::createAction("INCREMENT");
+
+$decrementAction = Redux::createAction("DECREMENT");
+
+$resetAction = Redux::createAction("RESET");
+
+
+
+# Reducer
+$initState = 0;
+
+$counterReducer = Redux::createReducer($initState, [
+    $incrementAction()["type"] => fn($state, $action) => $state + 1,
+    $decrementAction()["type"] => fn($state, $action) => $state - 1,
+    $resetAction()["type"] => fn($state, $action) => $state - $state,
+]);
+
+
+
+# Middleware
+$logger = Redux::createMiddleware(function($store, $action, $next) {
+    echo "- Logger Middleware -";
+    echo "[State] value: " . $store->getState();
+    echo "[Action] type: " . $action['type'];
+
+    
+    # Call next Middleware or Reducer
+    $next($action);
+});
+
+$middlewares = Redux::applyMiddlewares($logger);
+
+
+
+# Store
+$store = Redux::createStore($counterReducer, $middlewares);
+
+
+
+
+
+
+
+
+# ---------- Usage ----------
+# Subscriber
+$unSubscribe = $store->subscribe(function(\Redux\Contracts\Interfaces\Store $store) {
+    echo "[Store] updated!" . PHP_EOL;
+    echo "[State] value: " . $store->getState();
+});
+
+
+
+# Get State from the Store
+echo $store->getState() . PHP_EOL; # 0
+
+
+# Dispatch Action
+$store->dispatch($incrementAction()); # 1
+$store->dispatch($incrementAction()); # 2
+
+$unSubscribe(); # Stop the Subscriber to log
+
+$store->dispatch($incrementAction()); # 3
+
+
+# Get new State from the Store
+echo $store->getState(); # 3
+```
