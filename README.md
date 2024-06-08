@@ -54,7 +54,7 @@ Redux::createStore($reducer, $middlewares);
 Redux::createAction("ACTION");
 ```
 
-> **Reducer** : A Function to call by Action
+> **Reducer** : A Function to update state by Action
 
 ```php
 # Usage
@@ -67,8 +67,14 @@ Redux::createReducer($initState, $reducers);
 # Usage
 Redux::createMiddleware($callback);
 ```
+> **Apply Middlewares** : A Function to get all Middleawres and apply in Store
 
-> **CombineReducers** : Combine all reducers to get as Array with key & value
+```php
+# Usage
+Redux::applyMiddlewares(...$middlewares);
+```
+
+> **Combine Reducers** : Combine all reducers to get an Array with key & value
 
 ```php
 # Usage
@@ -96,14 +102,16 @@ $resetAction = Redux::createAction("RESET");
 * Reset count
 
 ```php
-$reducer = Redux::createReducer(0, [
+$initState = 0;
+
+$reducer = Redux::createReducer($initState, [
     $incrementAction()["type"] => fn($state, $action) => $state + 1,
     $decrementAction()["type"] => fn($state, $action) => $state - 1,
     $resetAction()["type"] => fn($state, $action) => $state - $state,
 ]);
 ```
 
-#### **Note** : when you call an Action , you should know to get an Array of key & value like this
+#### **Note** : when you calling an Action , you should know to get an Array of key & value like this
 ```php
 # Action
 $incrementAction = Redux::createAction("INCREMENT");
@@ -130,13 +138,13 @@ $incrementAction(["status" => "OK"])
 ]
 ```
 
-> Create Store by Action & Reducer 
+> Create Store by Reducer 
 
 ```php
 $store = Redux::createStore($counterReducer);
 ```
 
-> Using the Store in project 
+> Use the Store in project 
 
 ```php
 # Get State from the Store
@@ -152,7 +160,7 @@ $store->dispatch($incrementAction()); # 2
 echo $store->getState(); # 2
 ```
 
-> Subscribeing Store as Logger for changing State value
+> Subscribe the Store as Logger for changing State value
 
 ```php
 # Subscriber
@@ -179,3 +187,35 @@ $store->dispatch($incrementAction()); # 3
 # Get new State from the Store
 echo $store->getState(); # 3
 ```
+
+> Create Middleware to log the Store & Action 
+
+```php
+# Logger
+$logger = Redux::createMiddleware(function($store, $action, $next) {
+    echo "- Logger Middleware -";
+    echo "[State] value: " . $store->getState();
+    echo "[Action] type: " . $action['type'];
+
+    
+    # Call next Middleware or Reducer
+    $next($aciton);
+});
+
+
+
+
+# Get State from the Store
+$middlewares = Redux::applyMiddleawre();
+
+
+# Pass Middlewares as Argument to the Store that has defined yet
+$store = Redux::createStore($counterReducer, $middlewares);
+```
+
+### Note: **Middleware vs Subscriber**
+> Middleware can **log** Store, Action and  call next Middleware of Reducer by the Action!
+
+<br>
+
+> Subscriber can be **like Logger** to get **changing State value** from Store!
