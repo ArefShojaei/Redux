@@ -250,7 +250,7 @@ $store = Redux::createStore($counterReducer, $middlewares);
 <?php
 
 # Put autoload file path
-require_once "";
+require_once "vendor/autoload.php";
 
 
 use Redux\Redux;
