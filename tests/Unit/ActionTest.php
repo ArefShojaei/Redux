@@ -83,4 +83,20 @@ class ActionTest extends TestCase {
         # Assert
         $this->assertNull($actual['payload']);
     }
+
+    /**
+     * @test
+     */
+    public function validateCreatedActionReturnsAnArray() {
+        # Arrange
+        $incrementActionType = "@INIT";
+        
+        # Act
+        $incrementAction = new Action($incrementActionType);
+        $actual = $incrementAction();
+
+
+        # Assert
+        $this->assertIsArray($actual);     
+    }
 }
