@@ -61,4 +61,12 @@ final class StoreTest extends TestCase {
     public function validateStoreImplementsStoreInterface($store) {
         $this->assertInstanceOf(StoreContract::class, $store);
     }
+
+    /**
+     * @test
+     * @depends createStore
+     */
+    public function getStateThatShouldBeNumber($store) {
+        $this->assertIsInt($store->getState());
+    }
 }
