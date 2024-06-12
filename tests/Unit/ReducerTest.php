@@ -29,4 +29,29 @@ final class ReducerTest extends TestCase {
         # Assert
         $this->assertIsCallable($actual);
     }
+
+    /**
+     * @test
+     * @depends getListOfReducers
+     */
+    public function combineReducers($reducers) {
+        # Arrange
+
+        # Act
+        $reducer = Reducer::combineReducers($reducers);
+        
+        # Assert
+        $this->assertIsCallable($reducer);
+    }
+
+    /**
+     * @test
+     */
+    public static function getListOfReducers() {
+        # Fake Reducers
+        return [
+            "posts" => function() {},
+            "users" => function() {},
+        ];
+    }
 }
