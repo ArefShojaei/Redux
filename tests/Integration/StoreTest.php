@@ -4,9 +4,12 @@
  * @package
  */
 use PHPUnit\Framework\TestCase;
-use Redux\Action;
-use Redux\Reducer;
-use Redux\Store;
+use Redux\{
+    Store,
+    Reducer,
+    Action
+};
+use Redux\Contracts\Interfaces\Store as StoreContract;
 
 
 
@@ -47,5 +50,15 @@ final class StoreTest extends TestCase {
     
         # Assert
         $this->assertIsObject($store);
+
+        return $store;
+    }
+
+    /**
+     * @test
+     * @depends createStore
+     */
+    public function validateStoreImplementsStoreInterface($store) {
+        $this->assertInstanceOf(StoreContract::class, $store);
     }
 }
