@@ -71,4 +71,21 @@ final class ReducerTest extends TestCase {
     public function validateReducersArrayNotBeEmpty() {
         $this->assertNotEmpty($this->reducers);
     }
+
+    /**
+     * @test
+     * @depends createReducer
+     */
+    public function combineReducers($reducer) {
+        # Arrange
+        $reducers = [
+            "counter" => $reducer
+        ];
+
+        # Act
+        $actual = Reducer::combineReducers($reducers);
+    
+        # Assert
+        $this->assertIsCallable($actual);
+    }
 }
