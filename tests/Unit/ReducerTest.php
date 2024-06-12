@@ -42,4 +42,11 @@ final class ReducerTest extends TestCase {
 
         return $reducer;
     }
+
+    /**
+     * @test
+     */
+    public function validateReducerImplementsReducerInterface($reducer) {
+        $this->assertInstanceOf(ReducerContract::class, $reducer);
+    }
 }
