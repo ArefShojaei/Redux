@@ -51,4 +51,20 @@ class ActionTest extends TestCase {
         # Assert
         $this->assertEquals($expected, $actual);        
     }
+
+    /**
+     * @test
+     */
+    public function validateActionTypeShouldBeString() {
+        # Arrange
+        $incrementActionType = "@INIT";
+        
+        # Act
+        $incrementAction = new Action($incrementActionType);
+        $actual = $incrementAction();
+
+
+        # Assert
+        $this->assertIsString($actual['type']);         
+    }
 }
