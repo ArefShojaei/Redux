@@ -87,4 +87,14 @@ final class StoreTest extends TestCase {
         # Assert
         $this->assertNotEquals($updatedStateValue, $currentStateValue);
     }
+
+    /**
+     * @test
+     * @depends createStore
+     */
+    public function subscribeStoreWithAction($store) {
+        $unSubscribe = $store->subscribe(fn($store) => "Store Updated!");
+    
+        $this->assertIsCallable($unSubscribe);
+    }
 }
