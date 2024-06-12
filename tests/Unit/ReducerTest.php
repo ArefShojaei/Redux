@@ -57,4 +57,11 @@ final class ReducerTest extends TestCase {
     public function validateReducerInitStateNotBeNull() {
         $this->assertNotNull($this->initState);
     }
+
+    /**
+     * @test
+     */
+    public function validateReducersShouldBeAnArray() {
+        $this->assertIsArray($this->reducers);
+    }
 }
