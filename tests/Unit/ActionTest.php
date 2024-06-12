@@ -34,6 +34,8 @@ final class ActionTest extends TestCase {
 
         # Assert
         $this->assertEquals(self::DEFAULT_PAYLOAD, $actual);
+
+        return $action;
     }
 
     /**
@@ -103,14 +105,9 @@ final class ActionTest extends TestCase {
 
     /**
      * @test
+     * @depends createAction
      */
-    public function validateActionImplementsActionInterface() {
-        # Arrange
-
-        # Act
-        $action = new Action(self::INIT_ACTION);
-    
-        # Assert
+    public function validateActionImplementsActionInterface($action) {
         $this->assertInstanceOf(ActionContract::class, $action);
     }
 }
