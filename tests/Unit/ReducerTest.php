@@ -50,4 +50,11 @@ final class ReducerTest extends TestCase {
     public function validateReducerImplementsReducerInterface($reducer) {
         $this->assertInstanceOf(ReducerContract::class, $reducer);
     }
+
+    /**
+     * @test
+     */
+    public function validateReducerInitStateNotBeNull() {
+        $this->assertNotNull($this->initState);
+    }
 }
