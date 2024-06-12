@@ -26,8 +26,8 @@ final class ActionTest extends TestCase {
         # Arrange
         
         # Act
-        $incrementAction = new Action(self::INIT_ACTION);
-        $actual = $incrementAction();
+        $action = new Action(self::INIT_ACTION);
+        $actual = $action();
 
 
         # Assert
@@ -46,8 +46,8 @@ final class ActionTest extends TestCase {
         ];
         
         # Act
-        $incrementAction = new Action(self::INIT_ACTION);
-        $actual = $incrementAction($payload);
+        $action = new Action(self::INIT_ACTION);
+        $actual = $action($payload);
 
 
         # Assert
@@ -61,12 +61,12 @@ final class ActionTest extends TestCase {
         # Arrange
         
         # Act
-        $incrementAction = new Action(self::INIT_ACTION);
-        $actual = $incrementAction();
+        $action = new Action(self::INIT_ACTION);
+        $actual = $action();
 
 
         # Assert
-        $this->assertIsString($actual['type']);         
+        $this->assertIsString($actual['type']); 
     }
 
     /**
@@ -76,8 +76,8 @@ final class ActionTest extends TestCase {
         # Arrange
         
         # Act
-        $incrementAction = new Action(self::INIT_ACTION);
-        $actual = $incrementAction();
+        $action = new Action(self::INIT_ACTION);
+        $actual = $action();
 
 
         # Assert
@@ -91,8 +91,8 @@ final class ActionTest extends TestCase {
         # Arrange
         
         # Act
-        $incrementAction = new Action(self::INIT_ACTION);
-        $actual = $incrementAction();
+        $action = new Action(self::INIT_ACTION);
+        $actual = $action();
 
 
         # Assert
