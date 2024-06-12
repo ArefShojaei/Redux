@@ -5,6 +5,8 @@
  */
 use PHPUnit\Framework\TestCase;
 use Redux\Action;
+use Redux\Contracts\Interfaces\Action as ActionContract;
+
 
 
 /**
@@ -97,5 +99,18 @@ final class ActionTest extends TestCase {
 
         # Assert
         $this->assertIsArray($actual);     
+    }
+
+    /**
+     * @test
+     */
+    public function validateActionImplementsActionInterface() {
+        # Arrange
+
+        # Act
+        $action = new Action(self::INIT_ACTION);
+    
+        # Assert
+        $this->assertInstanceOf(ActionContract::class, $action);
     }
 }
