@@ -66,7 +66,9 @@ final class ActionTest extends TestCase {
      * @depends createAction
      */
     public function validateActionTypeShouldBeString($action) {
-        $this->assertIsString($action['type']); 
+        $actual = $action()['type'];
+
+        $this->assertIsString($actual); 
     }
 
     /**
@@ -74,7 +76,9 @@ final class ActionTest extends TestCase {
      * @depends createAction
      */
     public function validateActionPayloadShouldBeNull($action) {
-        $this->assertNull($action['payload']);
+        $actual = $action()['payload'];
+
+        $this->assertNull($actual);
     }
 
     /**
@@ -82,7 +86,9 @@ final class ActionTest extends TestCase {
      * @depends createAction
      */
     public function validateCreatedActionReturnsAnArray($action) {
-        $this->assertIsArray($action);     
+        $actual = $action();
+
+        $this->assertIsArray($actual);     
     }
 
     /**
