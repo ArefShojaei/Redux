@@ -64,4 +64,11 @@ final class ReducerTest extends TestCase {
     public function validateReducersShouldBeAnArray() {
         $this->assertIsArray($this->reducers);
     }
+
+    /**
+     * @test
+     */
+    public function validateReducersArrayNotBeEmpty() {
+        $this->assertNotEmpty($this->reducers);
+    }
 }
