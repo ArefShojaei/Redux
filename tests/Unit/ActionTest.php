@@ -30,4 +30,25 @@ class ActionTest extends TestCase {
         # Assert
         $this->assertEquals($expected, $actual);
     }
+
+    /**
+     * @test
+     */
+    public function createActionWithPayload() {
+        # Arrange
+        $incrementActionType = "@INIT";
+        $payload = ["status" => "OK"];
+        $expected = [
+            "type" => $incrementActionType,
+            "payload" => $payload
+        ];
+        
+        # Act
+        $incrementAction = new Action($incrementActionType);
+        $actual = $incrementAction($payload);
+
+
+        # Assert
+        $this->assertEquals($expected, $actual);        
+    }
 }
