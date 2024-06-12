@@ -67,4 +67,20 @@ class ActionTest extends TestCase {
         # Assert
         $this->assertIsString($actual['type']);         
     }
+
+    /**
+     * @test
+     */
+    public function validateActionPayloadShouldBeNull() {
+        # Arrange
+        $incrementActionType = "@INIT";
+        
+        # Act
+        $incrementAction = new Action($incrementActionType);
+        $actual = $incrementAction();
+
+
+        # Assert
+        $this->assertNull($actual['payload']);
+    }
 }
