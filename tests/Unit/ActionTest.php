@@ -26,9 +26,9 @@ final class ActionTest extends TestCase {
      */
     public function createAction() {
         # Arrange
+        $action = new Action(self::INIT_ACTION);
         
         # Act
-        $action = new Action(self::INIT_ACTION);
         $actual = $action();
 
 
@@ -44,63 +44,45 @@ final class ActionTest extends TestCase {
     public function createActionWithPayload() {
         # Arrange
         $payload = ["status" => "OK"];
+        
+        $action = new Action(self::INIT_ACTION);
+        
         $expected = [
             "type" => self::INIT_ACTION,
             "payload" => $payload
         ];
         
+
         # Act
-        $action = new Action(self::INIT_ACTION);
         $actual = $action($payload);
 
 
         # Assert
-        $this->assertEquals($expected, $actual);        
+        $this->assertEquals($expected, $actual);      
     }
 
     /**
      * @test
+     * @depends createAction
      */
-    public function validateActionTypeShouldBeString() {
-        # Arrange
-        
-        # Act
-        $action = new Action(self::INIT_ACTION);
-        $actual = $action();
-
-
-        # Assert
-        $this->assertIsString($actual['type']); 
+    public function validateActionTypeShouldBeString($action) {
+        $this->assertIsString($action['type']); 
     }
 
     /**
      * @test
+     * @depends createAction
      */
-    public function validateActionPayloadShouldBeNull() {
-        # Arrange
-        
-        # Act
-        $action = new Action(self::INIT_ACTION);
-        $actual = $action();
-
-
-        # Assert
-        $this->assertNull($actual['payload']);
+    public function validateActionPayloadShouldBeNull($action) {
+        $this->assertNull($action['payload']);
     }
 
     /**
      * @test
+     * @depends createAction
      */
-    public function validateCreatedActionReturnsAnArray() {
-        # Arrange
-        
-        # Act
-        $action = new Action(self::INIT_ACTION);
-        $actual = $action();
-
-
-        # Assert
-        $this->assertIsArray($actual);     
+    public function validateCreatedActionReturnsAnArray($action) {
+        $this->assertIsArray($action);     
     }
 
     /**
