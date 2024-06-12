@@ -69,4 +69,22 @@ final class StoreTest extends TestCase {
     public function getStateThatShouldBeNumber($store) {
         $this->assertIsInt($store->getState());
     }
+
+    /**
+     * @test
+     * @depends createStore
+     */
+    public function dispatchActionToUpdateState($store) {
+        # Arrange
+        $incrementAction = $this->action;
+        $currentStateValue = $store->getState();
+
+        # Act
+        $store->dispatch($incrementAction());
+        $updatedStateValue = $store->getState();
+
+
+        # Assert
+        $this->assertNotEquals($updatedStateValue, $currentStateValue);
+    }
 }
