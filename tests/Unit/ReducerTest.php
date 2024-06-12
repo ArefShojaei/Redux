@@ -45,6 +45,7 @@ final class ReducerTest extends TestCase {
 
     /**
      * @test
+     * @depends createReducer
      */
     public function validateReducerImplementsReducerInterface($reducer) {
         $this->assertInstanceOf(ReducerContract::class, $reducer);
