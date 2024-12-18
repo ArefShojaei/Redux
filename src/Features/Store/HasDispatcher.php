@@ -1,29 +1,14 @@
 <?php declare(strict_types=1);
 
-/**
- * @namespace
- */
 namespace Redux\Features\Store;
 
 
-/**
- * @package
- */
 use Redux\Middleware;
 
 
-
-/**
- * Has Dispatcher feature
- * @tarit
- */
 trait HasDispatcher {
     /**
      * Dispatch reducer by Action
-     * @method dispatch
-     * @public
-     * @param array $action
-     * @return void
      */
     public function dispatch(array $action): void {
         # Apply Middlewares
@@ -32,7 +17,7 @@ trait HasDispatcher {
             $middleware->apply($this, $action);
         }
 
-        # Get Reducer
+        # Get the Reducer
         $reducer = $this->reducer;
         
         # Run the Reducer

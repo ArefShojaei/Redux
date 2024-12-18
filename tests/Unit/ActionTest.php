@@ -1,17 +1,10 @@
 <?php
 
-/**
- * @package
- */
 use PHPUnit\Framework\TestCase;
 use Redux\Action;
 use Redux\Contracts\Interfaces\Action as ActionContract;
 
 
-
-/**
- * Action Test
- */
 final class ActionTest extends TestCase {
     private const INIT_ACTION = "@INIT";
     

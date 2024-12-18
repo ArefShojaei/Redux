@@ -1,25 +1,14 @@
 <?php declare(strict_types=1);
 
-/**
- * @namespace
- */
 namespace Redux;
 
 
-/**
- * @package
- */
 use Redux\Contracts\Interfaces\{
     Store,
     Middleware as MiddlewareContract
 };
 
 
-
-/**
- * Middleware as Guard
- * @class
- */
 final class Middleware implements MiddlewareContract {
     /**
      * List of Middlewares

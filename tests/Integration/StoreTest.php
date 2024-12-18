@@ -1,8 +1,5 @@
 <?php
 
-/**
- * @package
- */
 use PHPUnit\Framework\TestCase;
 use Redux\{
     Store,
@@ -12,12 +9,9 @@ use Redux\{
 use Redux\Contracts\Interfaces\Store as StoreContract;
 
 
-
-/**
- * Store Test
- */
 final class StoreTest extends TestCase {
     private $reducer;
+    
     private $action;
 
 

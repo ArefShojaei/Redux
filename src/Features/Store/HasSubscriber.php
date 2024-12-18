@@ -1,22 +1,11 @@
 <?php declare(strict_types=1);
 
-/**
- * @namespace
- */
 namespace Redux\Features\Store;
 
 
-/**
- * Has Subscriber feature
- * @tarit
- */
 trait HasSubscriber {
     /**
      * Subscribe & UnSubscribe Store by Subscriber
-     * @method subscribe
-     * @public
-     * @param callable $subscriber
-     * @return void
      */
     public function subscribe(callable $subscriber): callable {
         # Add Subscriber
@@ -29,17 +18,12 @@ trait HasSubscriber {
 
     /**
      * UnSubscribe all Subscribers
-     * @method unSubscribe
-     * @private
-     * @param callable $subscriber
-     * @return callable
      */
     private function unSubscribe(callable $subscriber): callable {
         return function() use ($subscriber) {
             # Get Subscriber index
             $subscriberIndex = array_search($subscriber, $this->subscribers);
 
-            # Self Subscriber index
             $selfSubscriberIndex = 1;
 
             # Pop the Subscriber from the Subscribers
