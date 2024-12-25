@@ -37,7 +37,6 @@ final class Reducer implements ReducerContract {
     
     public static function combineReducers(array $reducers): callable {
         return function($state, $action) use ($reducers) {
-            # New State
             $result = [];
 
             # Add State

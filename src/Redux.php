@@ -11,9 +11,6 @@ use Redux\Features\Redux\HasStore;
 
 
 
-/**
- * Redux Factory
- */
 class Redux implements ReduxContract {
     use HasStore, HasAction, HasReducer, HasMiddleware;
 }

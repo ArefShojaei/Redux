@@ -5,7 +5,7 @@ namespace Redux\Features\Store;
 
 trait HasSubscriber {
     /**
-     * Subscribe & UnSubscribe Store by Subscriber
+     * Subscribe & UnSubscribe Store
      */
     public function subscribe(callable $subscriber): callable {
         # Add Subscriber
@@ -21,12 +21,12 @@ trait HasSubscriber {
      */
     private function unSubscribe(callable $subscriber): callable {
         return function() use ($subscriber) {
-            # Get Subscriber index
+            # Subscriber index
             $subscriberIndex = array_search($subscriber, $this->subscribers);
 
             $selfSubscriberIndex = 1;
 
-            # Pop the Subscriber from the Subscribers
+            # Delete the Subscriber from the Subscribers
             array_splice($this->subscribers, $subscriberIndex, $selfSubscriberIndex);
         };
     }

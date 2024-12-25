@@ -7,9 +7,6 @@ use Redux\Middleware;
 
 
 trait HasDispatcher {
-    /**
-     * Dispatch reducer by Action
-     */
     public function dispatch(array $action): void {
         # Apply Middlewares
         if(count($this->middlewares)) {
@@ -17,10 +14,8 @@ trait HasDispatcher {
             $middleware->apply($this, $action);
         }
 
-        # Get the Reducer
         $reducer = $this->reducer;
         
-        # Run the Reducer
         $this->state = $reducer($this->state, $action);
 
         # Run all Subscribers
