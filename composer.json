@@ -5,7 +5,7 @@
         "Library",
         "Redux"
     ],
-    "version": "1.8.3",
+    "version": "2.3.0",
     "type": "library",
     "license": "MIT",
     "autoload": {
